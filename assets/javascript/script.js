@@ -24,23 +24,25 @@ var animals = ["Dog", "Cat", "Horse", "Pig"]
 // create new buttons on user input
 function createNewButtons() {
 
-    // Deleting the movie buttons prior to adding new movie buttons
-    // (this is necessary otherwise we will have repeat buttons)
+    // deleting all buttons
     $("#animalButtons").empty();
 
     for (var i = 0; i < animals.length; i++) {
 
         // Then dynamicaly generating buttons for each movie in the array.
         // This code $("<button>") is all jQuery needs to create the start and end tag. (<button></button>)
-        var a = $("<button>");
+        var newButton = $("<button>");
         // Adding a class
-        a.addClass("animal");
+        newButton.attr("class", "animal");
+
+        newButton.attr("type", "button");
         // Adding a data-attribute
-        a.attr("data-name", animals[i]);
+        newButton.attr("data-name", animals[i]);
         // Providing the button's text with a value
-        a.text(animals[i]);
+        newButton.text(animals[i]);
         // Adding the button to the HTML
-        $("#animalButtons").append(a);
+        $("#animalButtons").append(newButton);
+        console.log(newButton); 
     }
 }
 
@@ -48,14 +50,25 @@ $("#add-animal").on("click", function (event) {
 
     event.preventDefault();
 
-    var animal = $("#animalButtons").val().trim();
+    var animal = $("#animal-input").val().trim();
 
     animals.push(animal);
 
     createNewButtons();
+       
 });
 
 createNewButtons();
+
+$(document).on("click", ".animal", function(e) {
+    var animalName = $(this).attr("data-name");
+    console.log(animalName);
+
+    // make our AJAX call 
+
+    // Display our giphies to the page
+    
+});
 
 // (document).ready
 // clear
