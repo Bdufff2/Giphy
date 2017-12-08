@@ -12,13 +12,11 @@
 // display to user
 // on click animate gifs
 // on click stops animation
-var apiKey = "cNAhWZ4OX6OdaUfKzlkPY7YsgGj1nqgV"
-var url = "https://api.giphy.com/v1/gifs/search?api_key=cNAhWZ4OX6OdaUfKzlkPY7YsgGj1nqgV&q=gif&limit=10&offset=0&rating=PG&lang=en"
 
 
 
 
-var animals = ["Dog", "Cat", "Horse", "Pig"]
+var animals = ["Dog", "Cat", "Horse", "Pig"];
 
 
 // create new buttons on user input
@@ -65,9 +63,18 @@ $(document).on("click", ".animal", function(e) {
     console.log(animalName);
 
     // make our AJAX call 
-
-    // Display our giphies to the page
+    var apiKey = "cNAhWZ4OX6OdaUfKzlkPY7YsgGj1nqgV";
     
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey + "&q=gif&limit=10&offset=0&rating=PG&lang=en";
+
+    // $.ajax({
+    //     url: queryUrl,
+    //     method: 'GET'
+    // }).done(function(response) {
+    //     console.log(response)
+    
+    // Display our giphies to the page
+
 });
 
 // (document).ready
