@@ -47,35 +47,37 @@ function createNewButtons() {
 $("#add-animal").on("click", function (event) {
 
     event.preventDefault();
-
     var animal = $("#animal-input").val().trim();
-
     animals.push(animal);
-
     createNewButtons();
-       
+    
+    $("#animal-input").val("");
 });
 
 createNewButtons();
 
+// when a user clicks on a button the gif brings up results of the value of the button
 $(document).on("click", ".animal", function(e) {
     var animalName = $(this).attr("data-name");
     console.log(animalName);
-
+    e.preventDefault();
+    $("#animal-images").empty();
     // make our AJAX call 
     var apiKey = "cNAhWZ4OX6OdaUfKzlkPY7YsgGj1nqgV";
-    
-    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey + "&q=gif&limit=10&offset=0&rating=PG&lang=en";
-
-    // $.ajax({
-    //     url: queryUrl,
-    //     method: 'GET'
-    // }).done(function(response) {
-    //     console.log(response)
-    
+    var userInput = $("#animal-input").val();
+    var queryUrl = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey + "&q=" + animalName + "&limit=10&offset=0&rating=PG&lang=en"; 
+    $.ajax({
+        url: queryUrl,
+        method: 'GET'
+    }).done(function(response) {
+        console.log(response)
+        var data = response.data;
+        for (var i = 0; i < data.length; i++) {
+            var newImg = $("<img>");
+            newImg.attr("src", data[i].images.downsized.url);
+            $("#animal-images").append(newImg);
+        }
+    });
     // Display our giphies to the page
 
 });
-
-// (document).ready
-// clear
